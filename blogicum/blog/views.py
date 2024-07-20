@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from django.http import Http404
+# в прошлый раз я вам старую версию отправил
 
 posts = [
     {
@@ -45,27 +46,24 @@ posts = [
 ]
 
 
+posts_dict = {post['id']: post for post in posts}
+
+
 def index(request):
-    template = 'blog/index.html'
-    title = 'Лента записей'
-    context = {
-        'title': title,
-        'posts': posts
-    }
-    return render(request, template, context)
+    return render(request, 'blog/index.html', {'posts': posts})
 
 
 def post_detail(request, post_id):
-    template = 'blog/detail.html'
-    context = {
-        'post': posts[post_id]
-    }
-    return render(request, template, context)
+    try:
+
+        post = posts[post_id]
+    except IndexError:
+        raise Http404("Poll does not exist")
+    context = {'post': post}
+    return render(request, 'blog/detail.html', context)
 
 
 def category_posts(request, category_slug):
-    template = 'blog/category.html'
-    context = {
+    return render(request, 'blog/category.html', {
         'category_slug': category_slug
-    }
-    return render(request, template, context)
+    })

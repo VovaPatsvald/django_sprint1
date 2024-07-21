@@ -58,7 +58,7 @@ def post_detail(request, post_id):
 
         post = posts[post_id]
     except IndexError:
-        raise Http404("Poll does not exist")
+        raise Http404('Сервер не найден')
     context = {'post': post}
     return render(request, 'blog/detail.html', context)
 

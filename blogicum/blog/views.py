@@ -55,12 +55,10 @@ def index(request):
 
 def post_detail(request, post_id):
     try:
-
-        post = posts[post_id]
+        post = posts_dict[post_id]
     except IndexError:
-        raise Http404('Сервер не найден')
-    context = {'post': post}
-    return render(request, 'blog/detail.html', context)
+        raise Http404('Требуемая страница не найдена')
+    return render(request, 'blog/detail.html', {'post': post})
 
 
 def category_posts(request, category_slug):

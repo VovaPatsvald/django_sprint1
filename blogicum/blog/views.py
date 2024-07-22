@@ -56,7 +56,7 @@ def index(request):
 def post_detail(request, post_id):
     try:
         post = posts_dict[post_id]
-    except IndexError:
+    except KeyError:
         raise Http404('Требуемая страница не найдена')
     return render(request, 'blog/detail.html', {'post': post})
 

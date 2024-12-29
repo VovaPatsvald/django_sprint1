@@ -44,7 +44,6 @@ posts = [
     },
 ]
 
-
 posts_dict = {post['id']: post for post in posts}
 
 

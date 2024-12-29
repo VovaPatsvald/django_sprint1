@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import Http404
-# в прошлый раз я вам старую версию отправил
 
 posts = [
     {
